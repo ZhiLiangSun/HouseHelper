@@ -1,0 +1,143 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>House Helper</title>
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" media="screen" />
+
+
+</head>
+<body style="background-image: url('http://www.freeiconspng.com/uploads/download-png-image-smoke-png-image-smokes-28.png');background-repeat: no-repeat;">
+
+<header class="w3-panel w3-padding-80 w3-center w3-opacity">
+{% if request.user.is_authenticated %}
+    <div>
+        <a href="{% url "logout" %}?next={{ request.path | urlencode }}" class="w3-btn w3-white w3-border"style="float: right;"><font face="Microsoft JhengHei" >登出</font></a>
+    </div>
+{% else %}
+    <div >
+        <a href="/register" class="w3-btn w3-white w3-border"style="float: right;"><font face="Microsoft JhengHei" >註冊</font></a>
+        <a href="{% url "login" %}?next={{ request.path | urlencode }}"  class="w3-btn w3-white w3-border" style="float: right;" ><font face="Microsoft JhengHei" >登入</font></a>
+
+    </div>
+{% endif %}
+
+
+</header>
+
+<div  class="w3-panel w3-padding-80 w3-center w3-opacity">
+<a href="/" style="text-decoration: none"><center> <h1 style="text-decoration: none;"><font face="Microsoft JhengHei" >找房小幫手</font></h1>
+    <h1 class="w3-xlarge" style="text-decoration:none;"><font face="Arial"> House Helper</font></h1>
+  </center></a>
+
+</div>
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js'></script>
+
+
+<script type="text/javascript" src={% static "js/index.js"%}></script>
+
+<center>
+    <form method='POST' action='' >{% csrf_token %}
+     <font face="Microsoft JhengHei">{{ form }}</font>
+
+        <input type='submit' value='送出' style="font-family: 'Microsoft JhengHei';background-color: #d5d5d5;color: black;" class="w3-btn"/>
+    </form>
+</div>
+</br>
+</br>
+<div class='container'>
+    <form method='POST' action=''>{% csrf_token %}
+        <font face="Microsoft JhengHei" >{{ q_form }}</font>
+        <input type='submit' value='送出'style="font-family: 'Microsoft JhengHei';background-color: #d5d5d5;color: black;" class="w3-btn"/>
+    </form>
+</div>
+</center>
+
+</br>
+</br>
+</br>
+
+ <div class="w3-row-padding ">
+
+    {% for house in house_list %}
+
+      <div class="w3-col l3 m6 w3-margin-bottom">
+      <a href="{% url 'h_detail' pk=house.pk %}"><img src="{{ house.photo}}" alt="house image"  style="height: 300px; width: 350px;" ></a>
+      <h3 style="font-family: 'Microsoft JhengHei'">{{ house.title }}</h3>
+      <p class="w3-opacity"  style="font-family: 'Microsoft JhengHei'" >{{ house.section }}</p>
+      <a class="w3-btn-block" href="{% url 'h_detail' pk=house.pk %}" style="width:350px;">
+{#                         根據在 urls.py 中設定的「name」值，找到對應的 URL 並傳入pk參數 #}
+                        Read More </a>
+    </div>
+     {% endfor %}
+</div>
+<div>
+    <h5><font face="Microsoft JhengHei">熱門區域排行榜</font></h5>
+    <table class=" w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tbody><tr>
+        <td><i  class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei"> 第一名</font></td>
+        <td><font face="Microsoft JhengHei">中壢區</font></td>
+      </tr>
+      <tr>
+        <td><i  class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei">第二名</font></td>
+        <td><font face="Microsoft JhengHei">桃園區</font></td>
+      </tr>
+      <tr>
+        <td><i  class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei">第三名</font></td>
+        <td><font face="Microsoft JhengHei">大溪區</font></td>
+      </tr>
+      <tr>
+        <td><i  class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei">第四名</font></td>
+        <td><font face="Microsoft JhengHei">蘆竹區</font></td>
+      </tr>
+      <tr>
+        <td><i  class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei">第五名</font></td>
+        <td><font face="Microsoft JhengHei">龍潭區</font></td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-thumbs-o-up w3-padding-tiny" style="color: dodgerblue"></i></td>
+        <td><font face="Microsoft JhengHei">第六名</font></td>
+        <td><font face="Microsoft JhengHei">平鎮區</font></td>
+      </tr>
+    </tbody></table>
+</div>
+
+
+
+
+
+
+<!-- End Page Content -->
+
+
+<!-- Footer -->
+<footer class="w3-container  w3-light-grey w3-center" style="padding: 0px; border: 0px;margin: 0px; padding-top: 20px;">
+  <a href="https://www.facebook.com/NCUMIS104/" target="_blank" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+  <a href="http://www.plurk.com/?qualifier=shares&status=127.0.0.1" target="_blank" class="w3-hover-text-red"><i class="fa fa-pinterest-p"></i></a>
+  <a href="http://twitter.com/home/?status=%20http://127.0.0.1" target="_blank" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+
+    <p>© House Helper since 2016</p>
+</footer>
+
+</body>
+</html>

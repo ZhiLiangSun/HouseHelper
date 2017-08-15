@@ -1,0 +1,126 @@
+<!-- templates/post.html -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>{{ house.title }} | House Helper </title>
+{#    <link href="//fonts.googleapis.com/css?family=Lemon" rel="stylesheet" type="text/css">#}
+{#    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">#}
+{#    <link href="//djangogirlstaipei.github.io/assets/css/style.css" rel="stylesheet" type="text/css">#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" media="screen" />
+
+
+</head>
+<body style="background-image: url('http://www.freeiconspng.com/uploads/download-png-image-smoke-png-image-smokes-28.png');background-repeat: no-repeat;">
+<header class="w3-panel w3-padding-80 w3-center w3-opacity" >
+{% if request.user.is_authenticated %}
+    <div>
+        <a href="{% url "logout" %}?next={{ request.path | urlencode }}" class="w3-btn w3-white w3-border"style="float: right;"><font face="Microsoft JhengHei" >登出</font></a>
+    </div>
+{% else %}
+    <div >
+        <a href="/register" class="w3-btn w3-white w3-border"style="float: right;"><font face="Microsoft JhengHei" >註冊</font></a>
+        <a href="{% url "login" %}?next={{ request.path | urlencode }}"  class="w3-btn w3-white w3-border" style="float: right;" ><font face="Microsoft JhengHei" >登入</font></a>
+
+    </div>
+{% endif %}
+
+
+</header>
+
+<div  class="w3-panel w3-padding-80 w3-center w3-opacity">
+<a href="/" style="text-decoration: none"><center> <h1 style="text-decoration: none;"><font face="Microsoft JhengHei" >找房小幫手</font></h1>
+    <h1 class="w3-xlarge" style="text-decoration:none;"><font face="Arial"> House Helper</font></h1>
+  </center></a>
+
+</div>
+
+<div class="w3-card-2 w3-round "  style="background-image: url('http://www.freeiconspng.com/uploads/area05-smoke-21.png'); background-repeat: repeat-x;background-size: cover" >
+        <div class="w3-container"  style="background-color: rgba(255,255,255,0.5);"><center>
+         <h4 class="w3-center" ><font face="Microsoft JhengHei" >{{ house.title }}</font></h4>
+             <img class="photo" src="{{ house.photo }}" alt="Cover photo for {{ post.title }}">
+            <div >
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><font face="Microsoft JhengHei" >區域：{{ house.section }}</font></p>
+         <p><i class="fa fa-money fa-fw w3-margin-right w3-text-theme"></i><font face="Microsoft JhengHei" >價格：{{ house.price }}</font></p>
+         <p><i class="fa fa-hotel fa-fw w3-margin-right w3-text-theme"></i> <font face="Microsoft JhengHei" >格局：{{ house.structure }}</font></p></div></center>
+            <input class="w3-btn" type="button" value="Go WebSite" onclick="self.location.href='{{ house.link }}'" style="float: right;"/>
+        </div>
+</div>
+
+
+{#     <div class="post-content">#}
+{#         <div>區域：{{ house.section }}</div>#}
+{#         <div>價格：{{ house.price }}</div>#}
+{#         <div>格局：{{ house.structure }}</div>#}
+{#     </div>#}
+{#     <hr class="fancy-line">#}
+{#     <img class="photo" src="{{ house.photo }}" alt="Cover photo for {{ post.title }}">#}
+{#     <div class="post-footer">#}
+{#         <a class="read-more" href="{{ house.link }}">#}
+{#             Read More <i class="fa fa-arrow-right"></i>#}
+{#         </a>#}
+{#     </div>#}
+<div style="background-image: url('http://www.freeiconspng.com/uploads/misc-cloud-smoke-element-png-by-dbszabo1-on-deviantart-19.png');background-color: rgba(255,255,255,0.5); background-size: 1300px;">
+<center><h2 ><font face="Microsoft JhengHei" >會員評論</font></h2></center>
+ {% for message in message_list %}
+    <center><div class="w3-container w3-card-2 w3-white w3-round w3-margin" style="width: 600px;">
+
+        <span class="w3-right w3-opacity"><font face="Microsoft JhengHei" >{{ message.publication_date }}</font></span>
+        <h2 style="text-align: left;"><font face="Microsoft JhengHei" >{{ message.user }}</font></h2>
+        <hr class="w3-clear">
+        <p><font face="Microsoft JhengHei" >{{ message.comment }}</font></p>
+     </div></center>
+ {% endfor %}
+</div>
+{#    <div class="post-content">#}
+{##}
+{#        {% for message in message_list %}#}
+{#            {{ message.user }}#}
+{#            </br>#}
+{#            {{ message.comment }}#}
+{#            </br>#}
+{#            {{ message.publication_date }}#}
+{#            </br>#}
+{#        {% endfor %}#}
+{##}
+{#    </div>#}
+
+     <div class="w3-row-padding" style="background-color: #f5f7f8;">
+        <div class="w3-col m12">
+         <div class="w3-card-2 w3-round w3-white">
+           <div class="w3-container w3-padding" style="background-image: url('http://www.freeiconspng.com/uploads/battlefield4-spotlight-background-smoke-5.png')">
+    {% if request.user.is_authenticated %}
+           <center> <form action="" method="POST">{% csrf_token %}
+               <h4><font face="Microsoft JhengHei" >{{ user_name }}，留個言吧！</font></h4>
+                <font face="Microsoft JhengHei" >{{ guestbook.as_p }}</font>
+
+                 <button type="submit" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Submit</button>
+            </form></center>
+
+    {% endif %}
+              </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+    <script src="//djangogirlstaipei.github.io/assets/js/map.js"></script>
+</div>
+<footer class="w3-container  w3-light-grey w3-center" style="padding: 0px; border: 0px;margin: 0px; padding-top: 20px;">
+  <a href="https://www.facebook.com/NCUMIS104/" target="_blank" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+  <a href="http://www.plurk.com/?qualifier=shares&status=127.0.0.1" target="_blank" class="w3-hover-text-red"><i class="fa fa-pinterest-p"></i></a>
+  <a href="http://twitter.com/home/?status=%20http://127.0.0.1" target="_blank" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+{#  <a href="http://www.facebook.com/share.php?u=http%3a%2f%2f127.0.0.1" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>#}
+{#  <a href="https://www.facebook.com/NCUMIS104/" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>#}
+{#  <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>#}
+    <p>© House Helper since 2016</p>
+</footer>
+</body>
+</html>

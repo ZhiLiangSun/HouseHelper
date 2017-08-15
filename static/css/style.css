@@ -1,0 +1,49 @@
+@import url(http://fonts.googleapis.com/css?family=Allura);
+/*@font-color: white;*/
+body { background:url('http://hdwallpaperpics.com/wallpaper/picture/image/soft_bokeh_lights_background-other.jpg');}
+
+/* TEXTURE's BOX */
+.wrapper{ 
+  width:800px;
+  height: 200px;
+  margin:0px auto;
+  padding: 0px;
+  position: center;
+  z-index:-15;
+/*  border:3px dashed grey;
+  box-shadow: 0 0 0 15px #111111;
+  border-radius:20px;*/
+}
+/*.dark_stripes { background-image: url('http://subtlepatterns.com/patterns/dark_stripes.png'); }*/
+
+/*h1 { font-size:16pt; color: @font-color;font-family:Microsoft JhengHei;}*/
+h1 { font-size:16pt; font-family:Microsoft JhengHei;}
+label {font-family:Microsoft JhengHei; color: red;}
+
+#h2i { font-size:13pt;  font-family:Microsoft JhengHei;}
+li{font-size:25pt;font-family:Microsoft JhengHei;}
+td {font-family: Microsoft JhengHei;}
+/*p, dd { color : @font-color; }*/
+dt { color: grey; }
+a { color: skyblue; }
+
+/*ul { margin:0px; padding:10px; margin-left:20px; font-size: 3em; border: 0px solid @font-color; }*/
+ul { margin:0px; padding:10px; margin-left:20px; font-size: 3em; border: 0px }
+#list1, #list2 { width:100%; list-style-type:none; margin:0px; }
+#list1 li, #list2 li { float:left; padding:5px; width:150px; height:100px; }
+#list1 div, #list2 div {width:500px;  height:70px; background-color:#E0E0E0;
+  display: table-cell; vertical-align: middle; text-align: center; border-radius: 0%; border: 3px solid rgba(0,0,0,0.3) ; box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.5) ;}
+#list1 div:hover, #list2 div:hover { box-shadow: 0px 0px 0px 10px rgba(0,0,0,0.5) ; }
+
+
+#list2 div { background: lightgreen ; }
+.placeHolder div { background-color:white !important; border:dotted 10px grey !important; }
+
+.form-control col {font-family:Microsoft JhengHei;}
+
+input {font-family:Microsoft JhengHei;}
+
+.dropdown-content
+{
+
+}
